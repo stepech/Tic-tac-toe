@@ -64,7 +64,7 @@ public class TicTac {
 		} else {
 			System.out.println("Player 1's turn - ◯");
 		}
-		System.out.println("Enter number of slope from left, then hit enter");
+		System.out.println("Enter number of slope from the left, then hit enter");
 		x = in.nextInt();
 		System.out.println("Enter number of row from the bottom, then hit enter");
 		System.out.println("To change slope - enter 0");

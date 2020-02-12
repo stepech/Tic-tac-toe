@@ -5,6 +5,7 @@ public class TicTac {
 	static boolean playerX = false;
 	static int x, y;
 	static Scanner in = new Scanner(System.in);
+	static int turn = 0;
 
 	static void printIt() {
 		System.out.println("+--+--+--+");
@@ -15,8 +16,47 @@ public class TicTac {
 		System.out.println("|"+myField[2][0]+"|"+myField[2][1]+"|"+myField[2][2]+"|");
 		System.out.println("+--+--+--+");
 	}
-	static void checkWin() {
-		
+	static boolean checkY() {
+		for (int k=0; k<3; k++) {
+			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k]) {
+				return true;
+			}
+		}
+		return false;
+	}
+	static boolean checkX() {
+		for (int k=0; k<3; k++) {
+			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2]) {
+				return true;
+			}
+		}
+		return false;
+	}
+	static boolean checkWin() {
+		String player;
+		if (playerX==false) {
+			player = "OO";
+		} else {
+			player = "XX";
+		}
+		if (checkY()== true || checkX()== true) {
+			System.out.println(player + "won the game");
+			return true;
+		}
+		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2]) {
+			System.out.println(player + "won the game");
+			return true;
+		}
+		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0]) {
+			System.out.println(player + "won the game");
+			return true;
+		}
+		turn ++;
+		if (turn==9) {
+			System.out.println("Everything is full! Nobody wins");
+			return true;
+		}
+		return false;
 	}
 	static void play() {
 		System.out.println("Enter x coordinate, then hit enter");
@@ -33,7 +73,9 @@ public class TicTac {
 					playerX = false;
 				}
 				printIt();
-				play();
+				if (checkWin()==false) {
+					play();
+				}
 			} else {
 				System.out.println("Choose area which is empty");
 				play();

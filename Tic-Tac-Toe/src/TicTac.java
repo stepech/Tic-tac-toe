@@ -40,7 +40,7 @@ public class TicTac {
 			player = "XX";
 		}
 		if (checkRow()== true || checkSlope()== true) {
-			System.out.println(player + "won the game");
+			System.out.println(player + " won the game");
 			return true;
 		}
 		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != "  ") {
@@ -70,13 +70,19 @@ public class TicTac {
 					playerX = true;
 				} else {
 					myField[(x-1)][(y-1)] = "XX";
+					printIt();
+					if (checkWin()==false) {
+						play();
+					} else {
+						System.out.println("©stepech");
+					}
+					printIt();
+					if (checkWin()==false) {
+						play();
+					} else {
+						System.out.println("©stepech");
+					}
 					playerX = false;
-				}
-				printIt();
-				if (checkWin()==false) {
-					play();
-				} else {
-					System.out.println("©stepech");
 				}
 			} else {
 				System.out.println("Choose area which is empty");

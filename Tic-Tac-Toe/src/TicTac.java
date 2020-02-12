@@ -75,6 +75,8 @@ public class TicTac {
 				printIt();
 				if (checkWin()==false) {
 					play();
+				} else {
+					System.out.println("©stepech");
 				}
 			} else {
 				System.out.println("Choose area which is empty");

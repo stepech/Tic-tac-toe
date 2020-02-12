@@ -18,7 +18,7 @@ public class TicTac {
 	}
 	static boolean checkY() {
 		for (int k=0; k<3; k++) {
-			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k]) {
+			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k] && myField[0][k]!="  ") {
 				return true;
 			}
 		}
@@ -26,7 +26,7 @@ public class TicTac {
 	}
 	static boolean checkX() {
 		for (int k=0; k<3; k++) {
-			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2]) {
+			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2] && myField[k][0]!="  ") {
 				return true;
 			}
 		}
@@ -43,11 +43,11 @@ public class TicTac {
 			System.out.println(player + "won the game");
 			return true;
 		}
-		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2]) {
+		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != "  ") {
 			System.out.println(player + "won the game");
 			return true;
 		}
-		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0]) {
+		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0] && myField[1][1] != "  ") {
 			System.out.println(player + "won the game");
 			return true;
 		}

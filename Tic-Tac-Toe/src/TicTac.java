@@ -6,6 +6,7 @@ public class TicTac {
 	static int x, y;
 	static Scanner in = new Scanner(System.in);
 	static int turn = 0;
+	static String player;
 
 	static void printIt() {
 		System.out.println("+--+--+--+");
@@ -33,7 +34,6 @@ public class TicTac {
 		return false;
 	}
 	static boolean checkWin() {
-		String player;
 		if (playerX==false) {
 			player = "OO";
 		} else {
@@ -44,11 +44,11 @@ public class TicTac {
 			return true;
 		}
 		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != "  ") {
-			System.out.println(player + "won the game");
+			System.out.println(player + " won the game");
 			return true;
 		}
 		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0] && myField[1][1] != "  ") {
-			System.out.println(player + "won the game");
+			System.out.println(player + " won the game");
 			return true;
 		}
 		turn ++;
@@ -67,22 +67,22 @@ public class TicTac {
 			if (myField[(x-1)][(y-1)] == "  ") {
 				if (playerX == false) {
 					myField[(x-1)][(y-1)] = "OO";
-					playerX = true;
+					printIt();
+					if (checkWin()==false) {
+						playerX = true;
+						play();
+					} else {
+						System.out.println("Thanks for playing - ©stepech");
+					}
 				} else {
 					myField[(x-1)][(y-1)] = "XX";
 					printIt();
 					if (checkWin()==false) {
+						playerX = false;
 						play();
 					} else {
-						System.out.println("©stepech");
+						System.out.println("Thanks for playing - ©stepech");
 					}
-					printIt();
-					if (checkWin()==false) {
-						play();
-					} else {
-						System.out.println("©stepech");
-					}
-					playerX = false;
 				}
 			} else {
 				System.out.println("Choose area which is empty");

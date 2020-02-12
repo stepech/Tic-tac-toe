@@ -9,14 +9,14 @@ public class TicTac {
 
 	static void printIt() {
 		System.out.println("+--+--+--+");
-		System.out.println("|"+ myField[0][0] +"|"+ myField[0][1] +"|"+ myField[0][2] +"|");
+		System.out.println("|"+ myField[0][2] +"|"+ myField[1][2] +"|"+ myField[2][2] +"|");
 		System.out.println("+--+--+--+");
-		System.out.println("|"+ myField[1][0]+"|"+myField[1][1]+"|"+myField[1][2]+"|");
+		System.out.println("|"+ myField[0][1]+"|"+myField[1][1]+"|"+myField[2][1]+"|");
 		System.out.println("+--+--+--+");
-		System.out.println("|"+myField[2][0]+"|"+myField[2][1]+"|"+myField[2][2]+"|");
+		System.out.println("|"+myField[0][0]+"|"+myField[1][0]+"|"+myField[2][0]+"|");
 		System.out.println("+--+--+--+");
 	}
-	static boolean checkY() {
+	static boolean checkRow() {
 		for (int k=0; k<3; k++) {
 			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k] && myField[0][k]!="  ") {
 				return true;
@@ -24,7 +24,7 @@ public class TicTac {
 		}
 		return false;
 	}
-	static boolean checkX() {
+	static boolean checkSlope() {
 		for (int k=0; k<3; k++) {
 			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2] && myField[k][0]!="  ") {
 				return true;
@@ -39,7 +39,7 @@ public class TicTac {
 		} else {
 			player = "XX";
 		}
-		if (checkY()== true || checkX()== true) {
+		if (checkRow()== true || checkSlope()== true) {
 			System.out.println(player + "won the game");
 			return true;
 		}
@@ -59,9 +59,9 @@ public class TicTac {
 		return false;
 	}
 	static void play() {
-		System.out.println("Enter x coordinate, then hit enter");
+		System.out.println("Enter number of slope from left, then hit enter");
 		x = in.nextInt();
-		System.out.println("Enter y coordinate, then hit enter");
+		System.out.println("Enter number of row from the bottom, then hit enter");
 		y = in.nextInt();
 		if (x<4 && y<4 && x>0 && y>0) {
 			if (myField[(x-1)][(y-1)] == "  ") {
@@ -83,7 +83,7 @@ public class TicTac {
 				play();
 			}
 		} else {
-			System.out.println("Coordinates x and y can be only higher than 0 and lower than 4");
+			System.out.println("Slopes and rows can be only higher than 0 and lower than 4");
 			play();
 		}
 	}

@@ -59,9 +59,15 @@ public class TicTac {
 		return false;
 	}
 	static void play() {
+		if (playerX == true) {
+			System.out.println("Player 2's turn - X");
+		} else {
+			System.out.println("Player 1's turn - ◯");
+		}
 		System.out.println("Enter number of slope from left, then hit enter");
 		x = in.nextInt();
 		System.out.println("Enter number of row from the bottom, then hit enter");
+		System.out.println("To change slope - enter 0");
 		y = in.nextInt();
 		if (x<4 && y<4 && x>0 && y>0) {
 			if (myField[(x-1)][(y-1)] == "  ") {
@@ -72,7 +78,7 @@ public class TicTac {
 						playerX = true;
 						play();
 					} else {
-						System.out.println("Thanks for playing - �stepech");
+						System.out.println("Thanks for playing - ©stepech");
 					}
 				} else {
 					myField[(x-1)][(y-1)] = "XX";
@@ -81,13 +87,15 @@ public class TicTac {
 						playerX = false;
 						play();
 					} else {
-						System.out.println("Thanks for playing - �stepech");
+						System.out.println("Thanks for playing - ©stepech");
 					}
 				}
-			} else {
+			} else {			
 				System.out.println("Choose area which is empty");
 				play();
 			}
+		} else if (y == 0) {
+			play();
 		} else {
 			System.out.println("Slopes and rows can be only higher than 0 and lower than 4");
 			play();
@@ -96,7 +104,7 @@ public class TicTac {
 	public static void main(String[] args) {
 		printIt();
 		System.out.println("This is your field");
-		System.out.println("Starting with player O");
+		System.out.println("Starting with player 1 - ◯, player 2 - X");
 		play();
 		
 

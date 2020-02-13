@@ -1,22 +1,17 @@
-import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class TicTac {
 	static String[][] myField = {{"  ", "  ", "  "},{"  ", "  ", "  "}, {"  ", "  ", "  "}};
 	static boolean playerX = false;
-	static int x, y;
-	static Scanner in = new Scanner(System.in);
 	static int turn = 0;
 	static String player;
 
-	static void printIt() {
-		System.out.println("+--+--+--+");
-		System.out.println("|"+ myField[0][2] +"|"+ myField[1][2] +"|"+ myField[2][2] +"|");
-		System.out.println("+--+--+--+");
-		System.out.println("|"+ myField[0][1]+"|"+myField[1][1]+"|"+myField[2][1]+"|");
-		System.out.println("+--+--+--+");
-		System.out.println("|"+myField[0][0]+"|"+myField[1][0]+"|"+myField[2][0]+"|");
-		System.out.println("+--+--+--+");
-	}
 	static boolean checkRow() {
 		for (int k=0; k<3; k++) {
 			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k] && myField[0][k]!="  ") {
@@ -35,9 +30,9 @@ public class TicTac {
 	}
 	static boolean checkWin() {
 		if (playerX==false) {
-			player = "OO";
+			player = "O";
 		} else {
-			player = "XX";
+			player = "X";
 		}
 		if (checkRow()== true || checkSlope()== true) {
 			System.out.println(player + " won the game");
@@ -58,56 +53,147 @@ public class TicTac {
 		}
 		return false;
 	}
-	static void play() {
-		if (playerX == true) {
-			System.out.println("Player 2's turn - X");
-		} else {
-			System.out.println("Player 1's turn - ◯");
-		}
-		System.out.println("Enter number of slope from the left, then hit enter");
-		x = in.nextInt();
-		System.out.println("Enter number of row from the bottom, then hit enter");
-		System.out.println("To change slope - enter 0");
-		y = in.nextInt();
-		if (x<4 && y<4 && x>0 && y>0) {
-			if (myField[(x-1)][(y-1)] == "  ") {
+	static void play(int x, int y) {
+			if (myField[x][y] == "  ") {
 				if (playerX == false) {
-					myField[(x-1)][(y-1)] = "OO";
-					printIt();
+					myField[x][y] = "O";
+					
 					if (checkWin()==false) {
 						playerX = true;
-						play();
-					} else {
-						System.out.println("Thanks for playing - ©stepech");
 					}
 				} else {
-					myField[(x-1)][(y-1)] = "XX";
-					printIt();
+					myField[x][y] = "X";
+					
 					if (checkWin()==false) {
 						playerX = false;
-						play();
-					} else {
-						System.out.println("Thanks for playing - ©stepech");
-					}
+					} 
 				}
-			} else {			
-				System.out.println("Choose area which is empty");
-				play();
-			}
-		} else if (y == 0) {
-			play();
-		} else {
-			System.out.println("Slopes and rows can be only higher than 0 and lower than 4");
-			play();
-		}
+			}		
 	}
 	public static void main(String[] args) {
-		printIt();
-		System.out.println("This is your field");
-		System.out.println("Starting with player 1 - ◯, player 2 - X");
-		play();
+		JFrame frame = new JFrame();
+		JPanel panel = new JPanel();
 		
-
+		frame.setSize(600, 450);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(panel);
+		
+		panel.setLayout(null);
+		JLabel name = new JLabel("Tic-Tac-Toe");
+		name.setBounds(265, 20, 100, 30);
+		panel.add(name);
+		
+		
+		JButton a1 = new JButton(myField[0][2]);
+		JButton a2 = new JButton(myField[1][2]);
+		JButton a3 = new JButton(myField[2][2]);
+		JButton b1 = new JButton(myField[0][1]);
+		JButton b2 = new JButton(myField[1][1]);
+		JButton b3 = new JButton(myField[2][1]);
+		JButton c1 = new JButton(myField[0][0]);
+		JButton c2 = new JButton(myField[1][0]);
+		JButton c3 = new JButton(myField[2][0]);
+		
+		
+		
+		a1.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(0, 2);
+		        a1.setText(myField[0][2]);
+		      }
+		    });
+		a2.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(1, 2);
+		        a2.setText(myField[1][2]);
+		      }
+		    });
+		a3.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(2, 2);
+		        a3.setText(myField[2][2]);
+		      }
+		    });
+		b1.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(0, 1);
+		        b1.setText(myField[0][1]);
+		      }
+		    });
+		b2.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(1, 1);
+		        b2.setText(myField[1][1]);
+		      }
+		    });
+		b3.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(2, 1);
+		        b3.setText(myField[2][1]);
+		      }
+		    });
+		c1.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(0, 0);
+		        c1.setText(myField[0][0]);
+		      }
+		    });
+		c2.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(0, 1);
+		        c2.setText(myField[0][1]);
+		      }
+		    });
+		c3.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		        play(0, 2);
+		        c3.setText(myField[0][2]);
+		      }
+		    });
+		
+		
+		
+		a1.setBounds(210, 130, 55, 55);
+		a2.setBounds(280, 130, 55, 55);
+		a3.setBounds(350, 130, 55, 55);
+		b1.setBounds(210, 200, 55, 55);
+		b2.setBounds(280, 200, 55, 55);
+		b3.setBounds(350, 200, 55, 55);
+		c1.setBounds(210, 270, 55, 55);
+		c2.setBounds(280, 270, 55, 55);
+		c3.setBounds(350, 270, 55, 55);
+		
+		panel.add(a1);
+		panel.add(a2);
+		panel.add(a3);
+		panel.add(b1);
+		panel.add(b2);
+		panel.add(b3);
+		panel.add(c1);
+		panel.add(c2);
+		panel.add(c3);
+		
+		
+		frame.setVisible(true);
 	}
+	
 
 }

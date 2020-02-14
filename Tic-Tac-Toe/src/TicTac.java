@@ -10,6 +10,7 @@ public class TicTac {
 	static boolean playerX = false;
 	static String player = "O";
 	static String[][] myField = {{"c1", "b1", "a1"},{"c2", "b2", "a2"}, {"c3", "b3", "a3"}};
+	static String wPlayer;
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
@@ -62,7 +63,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(0, 2) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a2.setEnabled(false);
 		        	a3.setEnabled(false);
@@ -83,7 +84,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(1, 2) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a3.setEnabled(false);
@@ -104,7 +105,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(2, 2) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -125,7 +126,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(0, 1) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -146,7 +147,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(1, 1) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -167,7 +168,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(2, 1) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -188,7 +189,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(0, 0) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -209,7 +210,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(1, 0) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -230,7 +231,7 @@ public class TicTac {
 		      public void actionPerformed(ActionEvent e)
 		      {
 		        if (play(2, 0) == true) {
-		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setText("Player: "+wPlayer+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
@@ -263,10 +264,12 @@ public class TicTac {
 	static boolean play(int x, int y) {
 		if (playerX==false) {
 			player = "x";
+			wPlayer = "O";
 			myField[x][y] = "O";
 			playerX = true;
 		} else {
 			player = "o";
+			wPlayer = "X";
 			myField[x][y] = "X";
 			playerX = false;
 		}

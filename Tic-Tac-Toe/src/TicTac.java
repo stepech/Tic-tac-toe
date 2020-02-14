@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 public class TicTac {
 	static String[][] myField = {{"  ", "  ", "  "},{"  ", "  ", "  "}, {"  ", "  ", "  "}};
 	static boolean playerX = false;
-	static int turn = 0;
-	static String player;
+	static String player = "O";
+	static boolean win = false;
 
 	static boolean checkRow() {
 		for (int k=0; k<3; k++) {
@@ -46,29 +46,22 @@ public class TicTac {
 			System.out.println(player + " won the game");
 			return true;
 		}
-		turn ++;
-		if (turn==9) {
-			System.out.println("Everything is full! Nobody wins");
-			return true;
-		}
 		return false;
 	}
 	static void play(int x, int y) {
-			if (myField[x][y] == "  ") {
-				if (playerX == false) {
-					myField[x][y] = "O";
-					
-					if (checkWin()==false) {
-						playerX = true;
-					}
-				} else {
-					myField[x][y] = "X";
-					
-					if (checkWin()==false) {
-						playerX = false;
-					} 
-				}
-			}		
+		if (win == false) {
+			if (playerX == false) {
+				myField[x][y] = "O";
+				playerX = true;
+			} else {
+				myField[x][y] = "X";
+				playerX = false;
+			}	
+			win = checkWin();
+		}
+	}
+	static void update() {
+		
 	}
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
@@ -80,9 +73,13 @@ public class TicTac {
 		
 		panel.setLayout(null);
 		JLabel name = new JLabel("Tic-Tac-Toe");
-		name.setBounds(265, 20, 100, 30);
+		name.setBounds(265, 20, 100, 25);
 		panel.add(name);
 		
+		JLabel lPlayer = new JLabel();
+		lPlayer.setBounds(30, 20, 60, 25);
+		lPlayer.setText("Player: "+player);
+		panel.add(lPlayer);
 		
 		JButton a1 = new JButton(myField[0][2]);
 		JButton a2 = new JButton(myField[1][2]);
@@ -102,6 +99,7 @@ public class TicTac {
 		      {
 		        play(0, 2);
 		        a1.setText(myField[0][2]);
+		        a1.setEnabled(false);
 		      }
 		    });
 		a2.addActionListener(new ActionListener()
@@ -110,6 +108,7 @@ public class TicTac {
 		      {
 		        play(1, 2);
 		        a2.setText(myField[1][2]);
+		        a2.setEnabled(false);
 		      }
 		    });
 		a3.addActionListener(new ActionListener()
@@ -118,6 +117,7 @@ public class TicTac {
 		      {
 		        play(2, 2);
 		        a3.setText(myField[2][2]);
+		        a3.setEnabled(false);
 		      }
 		    });
 		b1.addActionListener(new ActionListener()
@@ -126,6 +126,7 @@ public class TicTac {
 		      {
 		        play(0, 1);
 		        b1.setText(myField[0][1]);
+		        b1.setEnabled(false);
 		      }
 		    });
 		b2.addActionListener(new ActionListener()
@@ -134,6 +135,7 @@ public class TicTac {
 		      {
 		        play(1, 1);
 		        b2.setText(myField[1][1]);
+		        b2.setEnabled(false);
 		      }
 		    });
 		b3.addActionListener(new ActionListener()
@@ -142,6 +144,7 @@ public class TicTac {
 		      {
 		        play(2, 1);
 		        b3.setText(myField[2][1]);
+		        b3.setEnabled(false);
 		      }
 		    });
 		c1.addActionListener(new ActionListener()
@@ -150,6 +153,7 @@ public class TicTac {
 		      {
 		        play(0, 0);
 		        c1.setText(myField[0][0]);
+		        c1.setEnabled(false);
 		      }
 		    });
 		c2.addActionListener(new ActionListener()
@@ -158,6 +162,7 @@ public class TicTac {
 		      {
 		        play(0, 1);
 		        c2.setText(myField[0][1]);
+		        c2.setEnabled(false);
 		      }
 		    });
 		c3.addActionListener(new ActionListener()
@@ -166,6 +171,7 @@ public class TicTac {
 		      {
 		        play(0, 2);
 		        c3.setText(myField[0][2]);
+		        c3.setEnabled(false);
 		      }
 		    });
 		

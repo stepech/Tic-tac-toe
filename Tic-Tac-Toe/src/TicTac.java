@@ -33,10 +33,10 @@ public class TicTac {
 		} else {
 			player = "X";
 		}
-		if (checkRow()== true || checkSlope()== true) {
+		if (checkRow() == true || checkSlope() == true) {
 			return true;
 		}
-		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != " ") {
+		if (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != " ") {
 			return true;
 		}
 		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0] && myField[1][1] != " ") {
@@ -63,6 +63,7 @@ public class TicTac {
 		frame.add(panel);
 		
 		panel.setLayout(null);
+		
 		JLabel name = new JLabel("Tic-Tac-Toe");
 		name.setBounds(265, 20, 100, 25);
 		panel.add(name);

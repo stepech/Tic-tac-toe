@@ -1,59 +1,16 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TicTac {
-	static String[][] myField = {{" ", " ", " "},{" ", " ", " "}, {" ", " ", " "}};
+	
 	static boolean playerX = false;
 	static String player = "O";
+	static String[][] myField = {{"c1", "b1", "a1"},{"c2", "b2", "a2"}, {"c3", "b3", "a3"}};
 
-	static boolean checkRow() {
-		for (int k=0; k<3; k++) {
-			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k] && myField[0][k]!=" ") {
-				return true;
-			}
-		}
-		return false;
-	}
-	static boolean checkSlope() {
-		for (int k=0; k<3; k++) {
-			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2] && myField[k][0]!=" ") {
-				return true;
-			}
-		}
-		return false;
-	}
-	static boolean checkWin() {
-		if (playerX==false) {
-			player = "O";
-		} else {
-			player = "X";
-		}
-		if (checkRow() == true || checkSlope() == true) {
-			return true;
-		}
-		if (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != " ") {
-			return true;
-		}
-		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0] && myField[1][1] != " ") {
-			return true;
-		}
-		return false;
-	}
-	static boolean play(int x, int y) {
-			if (playerX == false) {
-				myField[x][y] = "O";
-				playerX = true;
-			} else {
-				myField[x][y] = "X";
-				playerX = false;
-			}
-			return checkWin();
-	}
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
@@ -65,17 +22,19 @@ public class TicTac {
 		panel.setLayout(null);
 		
 		JLabel name = new JLabel("Tic-Tac-Toe");
-		name.setBounds(265, 20, 100, 25);
+		name.setBounds(228, 20, 300, 25);
+		name.setFont (name.getFont ().deriveFont (28.0f));
 		panel.add(name);
 		
 		JLabel lPlayer = new JLabel();
-		lPlayer.setBounds(30, 20, 60, 25);
+		lPlayer.setBounds(30, 30, 90, 25);
 		lPlayer.setText("Player: "+player);
+		lPlayer.setFont (lPlayer.getFont ().deriveFont (14.0f));
 		panel.add(lPlayer);
 		
 		JLabel Won = new JLabel();
-		Won.setVisible(false);
-		Won.setBounds(30, 40, 150, 25);
+		Won.setVisible(true);
+		Won.setBounds(30, 60, 150, 25);
 		panel.add(Won);
 		
 		JButton a1 = new JButton(myField[0][2]);
@@ -86,9 +45,17 @@ public class TicTac {
 		JButton b3 = new JButton(myField[2][1]);
 		JButton c1 = new JButton(myField[0][0]);
 		JButton c2 = new JButton(myField[1][0]);
-		JButton c3 = new JButton(myField[2][0]);
+		JButton c3 = new JButton(myField[1][0]);
 		
-		
+		a1.setBounds(210, 130, 55, 55);
+		a2.setBounds(280, 130, 55, 55);
+		a3.setBounds(350, 130, 55, 55);
+		b1.setBounds(210, 200, 55, 55);
+		b2.setBounds(280, 200, 55, 55);
+		b3.setBounds(350, 200, 55, 55);
+		c1.setBounds(210, 270, 55, 55);
+		c2.setBounds(280, 270, 55, 55);
+		c3.setBounds(350, 270, 55, 55);		
 		
 		a1.addActionListener(new ActionListener()
 	    {
@@ -97,7 +64,6 @@ public class TicTac {
 		        if (play(0, 2) == true) {
 		        	Won.setText("Player: "+player+" won the game!!!");
 		        	Won.setVisible(true);
-		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
 		        	a3.setEnabled(false);
 		        	b1.setEnabled(false);
@@ -120,7 +86,6 @@ public class TicTac {
 		        	Won.setText("Player: "+player+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
-		        	a2.setEnabled(false);
 		        	a3.setEnabled(false);
 		        	b1.setEnabled(false);
 		        	b2.setEnabled(false);
@@ -143,7 +108,6 @@ public class TicTac {
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
-		        	a3.setEnabled(false);
 		        	b1.setEnabled(false);
 		        	b2.setEnabled(false);
 		        	b3.setEnabled(false);
@@ -166,7 +130,6 @@ public class TicTac {
 		        	a1.setEnabled(false);
 		        	a2.setEnabled(false);
 		        	a3.setEnabled(false);
-		        	b1.setEnabled(false);
 		        	b2.setEnabled(false);
 		        	b3.setEnabled(false);
 		        	c1.setEnabled(false);
@@ -189,7 +152,6 @@ public class TicTac {
 		        	a2.setEnabled(false);
 		        	a3.setEnabled(false);
 		        	b1.setEnabled(false);
-		        	b2.setEnabled(false);
 		        	b3.setEnabled(false);
 		        	c1.setEnabled(false);
 		        	c2.setEnabled(false);
@@ -212,7 +174,6 @@ public class TicTac {
 		        	a3.setEnabled(false);
 		        	b1.setEnabled(false);
 		        	b2.setEnabled(false);
-		        	b3.setEnabled(false);
 		        	c1.setEnabled(false);
 		        	c2.setEnabled(false);
 		        	c3.setEnabled(false);
@@ -235,7 +196,6 @@ public class TicTac {
 		        	b1.setEnabled(false);
 		        	b2.setEnabled(false);
 		        	b3.setEnabled(false);
-		        	c1.setEnabled(false);
 		        	c2.setEnabled(false);
 		        	c3.setEnabled(false);
 		        }
@@ -248,7 +208,7 @@ public class TicTac {
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        if (play(0, 1) == true) {
+		        if (play(1, 0) == true) {
 		        	Won.setText("Player: "+player+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
@@ -258,10 +218,9 @@ public class TicTac {
 		        	b2.setEnabled(false);
 		        	b3.setEnabled(false);
 		        	c1.setEnabled(false);
-		        	c2.setEnabled(false);
 		        	c3.setEnabled(false);
 		        }
-		        c2.setText(myField[0][1]);
+		        c2.setText(myField[1][0]);
 		        c2.setEnabled(false);
 		        lPlayer.setText("Player: "+player);
 		      }
@@ -270,7 +229,7 @@ public class TicTac {
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        if (play(0, 2) == true) {
+		        if (play(2, 0) == true) {
 		        	Won.setText("Player: "+player+" won the game!!!");
 		        	Won.setVisible(true);
 		        	a1.setEnabled(false);
@@ -281,25 +240,12 @@ public class TicTac {
 		        	b3.setEnabled(false);
 		        	c1.setEnabled(false);
 		        	c2.setEnabled(false);
-		        	c3.setEnabled(false);
 		        }
-		        c3.setText(myField[0][2]);
+		        c3.setText(myField[2][0]);
 		        c3.setEnabled(false);
 		        lPlayer.setText("Player: "+player);
 		      }
 		    });
-		
-		
-		
-		a1.setBounds(210, 130, 55, 55);
-		a2.setBounds(280, 130, 55, 55);
-		a3.setBounds(350, 130, 55, 55);
-		b1.setBounds(210, 200, 55, 55);
-		b2.setBounds(280, 200, 55, 55);
-		b3.setBounds(350, 200, 55, 55);
-		c1.setBounds(210, 270, 55, 55);
-		c2.setBounds(280, 270, 55, 55);
-		c3.setBounds(350, 270, 55, 55);
 		
 		panel.add(a1);
 		panel.add(a2);
@@ -314,6 +260,37 @@ public class TicTac {
 		
 		frame.setVisible(true);
 	}
-	
+	static boolean play(int x, int y) {
+		if (playerX==false) {
+			player = "x";
+			myField[x][y] = "O";
+			playerX = true;
+		} else {
+			player = "o";
+			myField[x][y] = "X";
+			playerX = false;
+		}
+		
+		if (myField[0][0] == myField[1][1] && myField[1][1] == myField[2][2]) {
+			return true;
+		} else if (myField[0][2] == myField[1][1] && myField[0][2] == myField[2][0] && myField[0][2] != " ") {
+			return true;
+		}
+		for (int k = 0; k < myField.length; k++) {
+			if (myField[k][0].equals(myField[k][1])) {
+				if (myField[k][0].equals(myField[k][2])) {
+					return true;
+				}
+			}
+		}
+		for (int j = 0; j < myField.length; j++) {
+			if (myField[0][j].equals(myField[1][j])) {
+				if (myField[0][j].equals(myField[2][j])) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 }

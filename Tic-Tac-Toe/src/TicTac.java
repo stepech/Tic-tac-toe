@@ -7,14 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TicTac {
-	static String[][] myField = {{"  ", "  ", "  "},{"  ", "  ", "  "}, {"  ", "  ", "  "}};
+	static String[][] myField = {{" ", " ", " "},{" ", " ", " "}, {" ", " ", " "}};
 	static boolean playerX = false;
 	static String player = "O";
-	static boolean win = false;
 
 	static boolean checkRow() {
 		for (int k=0; k<3; k++) {
-			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k] && myField[0][k]!="  ") {
+			if (myField[0][k] == myField[1][k] && myField[1][k]==myField[2][k] && myField[0][k]!=" ") {
 				return true;
 			}
 		}
@@ -22,7 +21,7 @@ public class TicTac {
 	}
 	static boolean checkSlope() {
 		for (int k=0; k<3; k++) {
-			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2] && myField[k][0]!="  ") {
+			if (myField[k][0] == myField[k][1] && myField[k][1]==myField[k][2] && myField[k][0]!=" ") {
 				return true;
 			}
 		}
@@ -35,33 +34,25 @@ public class TicTac {
 			player = "X";
 		}
 		if (checkRow()== true || checkSlope()== true) {
-			System.out.println(player + " won the game");
 			return true;
 		}
-		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != "  ") {
-			System.out.println(player + " won the game");
+		if  (myField[0][0]==myField[1][1] && myField[1][1]==myField[2][2] && myField[1][1] != " ") {
 			return true;
 		}
-		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0] && myField[1][1] != "  ") {
-			System.out.println(player + " won the game");
+		if (myField[0][2]==myField[1][1] && myField[1][1]==myField[2][0] && myField[1][1] != " ") {
 			return true;
 		}
 		return false;
 	}
-	static void play(int x, int y) {
-		if (win == false) {
+	static boolean play(int x, int y) {
 			if (playerX == false) {
 				myField[x][y] = "O";
 				playerX = true;
 			} else {
 				myField[x][y] = "X";
 				playerX = false;
-			}	
-			win = checkWin();
-		}
-	}
-	static void update() {
-		
+			}
+			return checkWin();
 	}
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
@@ -81,6 +72,11 @@ public class TicTac {
 		lPlayer.setText("Player: "+player);
 		panel.add(lPlayer);
 		
+		JLabel Won = new JLabel();
+		Won.setVisible(false);
+		Won.setBounds(30, 40, 150, 25);
+		panel.add(Won);
+		
 		JButton a1 = new JButton(myField[0][2]);
 		JButton a2 = new JButton(myField[1][2]);
 		JButton a3 = new JButton(myField[2][2]);
@@ -97,81 +93,198 @@ public class TicTac {
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(0, 2);
+		        if (play(0, 2) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        a1.setText(myField[0][2]);
 		        a1.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		a2.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(1, 2);
+		        if (play(1, 2) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        a2.setText(myField[1][2]);
 		        a2.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		a3.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(2, 2);
+		        if (play(2, 2) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        a3.setText(myField[2][2]);
 		        a3.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		b1.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(0, 1);
+		        if (play(0, 1) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        b1.setText(myField[0][1]);
 		        b1.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		b2.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(1, 1);
+		        if (play(1, 1) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        b2.setText(myField[1][1]);
 		        b2.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		b3.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(2, 1);
+		        if (play(2, 1) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        b3.setText(myField[2][1]);
 		        b3.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		c1.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(0, 0);
+		        if (play(0, 0) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        c1.setText(myField[0][0]);
 		        c1.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		c2.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(0, 1);
+		        if (play(0, 1) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        c2.setText(myField[0][1]);
 		        c2.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		c3.addActionListener(new ActionListener()
 	    {
 		      public void actionPerformed(ActionEvent e)
 		      {
-		        play(0, 2);
+		        if (play(0, 2) == true) {
+		        	Won.setText("Player: "+player+" won the game!!!");
+		        	Won.setVisible(true);
+		        	a1.setEnabled(false);
+		        	a2.setEnabled(false);
+		        	a3.setEnabled(false);
+		        	b1.setEnabled(false);
+		        	b2.setEnabled(false);
+		        	b3.setEnabled(false);
+		        	c1.setEnabled(false);
+		        	c2.setEnabled(false);
+		        	c3.setEnabled(false);
+		        }
 		        c3.setText(myField[0][2]);
 		        c3.setEnabled(false);
+		        lPlayer.setText("Player: "+player);
 		      }
 		    });
 		

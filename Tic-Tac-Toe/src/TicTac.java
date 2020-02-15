@@ -13,6 +13,7 @@ public class TicTac {
 	static String wPlayer;
 
 	public static void main(String[] args) {
+		
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		
@@ -38,6 +39,11 @@ public class TicTac {
 		Won.setBounds(30, 60, 150, 25);
 		panel.add(Won);
 		
+		JButton restart = new JButton("Restart");
+		restart.setBounds(480, 350, 80, 30);
+		restart.setVisible(true);
+		panel.add(restart);
+		
 		JButton a1 = new JButton(myField[0][2]);
 		JButton a2 = new JButton(myField[1][2]);
 		JButton a3 = new JButton(myField[2][2]);
@@ -56,7 +62,17 @@ public class TicTac {
 		b3.setBounds(350, 200, 55, 55);
 		c1.setBounds(210, 270, 55, 55);
 		c2.setBounds(280, 270, 55, 55);
-		c3.setBounds(350, 270, 55, 55);		
+		c3.setBounds(350, 270, 55, 55);
+		
+		restart.addActionListener(new ActionListener()
+	    {
+		      public void actionPerformed(ActionEvent e)
+		      {
+		    	  frame.dispose();
+		    	  TicTac game = new TicTac();
+		    	  game.main(args);
+		      }
+	    });
 		
 		a1.addActionListener(new ActionListener()
 	    {

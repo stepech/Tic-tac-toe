@@ -39,20 +39,16 @@ public class TicTac {
 		Won.setBounds(30, 60, 150, 25);
 		panel.add(Won);
 		
-		JButton restart = new JButton("Restart");
-		restart.setBounds(480, 350, 80, 30);
-		restart.setVisible(true);
-		panel.add(restart);
 		
-		JButton a1 = new JButton(myField[0][2]);
-		JButton a2 = new JButton(myField[1][2]);
-		JButton a3 = new JButton(myField[2][2]);
-		JButton b1 = new JButton(myField[0][1]);
-		JButton b2 = new JButton(myField[1][1]);
-		JButton b3 = new JButton(myField[2][1]);
-		JButton c1 = new JButton(myField[0][0]);
-		JButton c2 = new JButton(myField[1][0]);
-		JButton c3 = new JButton(myField[1][0]);
+		JButton a1 = new JButton();
+		JButton a2 = new JButton();
+		JButton a3 = new JButton();
+		JButton b1 = new JButton();
+		JButton b2 = new JButton();
+		JButton b3 = new JButton();
+		JButton c1 = new JButton();
+		JButton c2 = new JButton();
+		JButton c3 = new JButton();
 		
 		a1.setBounds(210, 130, 55, 55);
 		a2.setBounds(280, 130, 55, 55);
@@ -64,15 +60,6 @@ public class TicTac {
 		c2.setBounds(280, 270, 55, 55);
 		c3.setBounds(350, 270, 55, 55);
 		
-		restart.addActionListener(new ActionListener()
-	    {
-		      public void actionPerformed(ActionEvent e)
-		      {
-		    	  frame.dispose();
-		    	  TicTac game = new TicTac();
-		    	  game.main(args);
-		      }
-	    });
 		
 		a1.addActionListener(new ActionListener()
 	    {
@@ -292,7 +279,7 @@ public class TicTac {
 		
 		if (myField[0][0] == myField[1][1] && myField[1][1] == myField[2][2]) {
 			return true;
-		} else if (myField[0][2] == myField[1][1] && myField[0][2] == myField[2][0] && myField[0][2] != " ") {
+		} else if (myField[0][2] == myField[1][1] && myField[0][2] == myField[2][0]) {
 			return true;
 		}
 		for (int k = 0; k < myField.length; k++) {
